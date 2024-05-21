@@ -94,22 +94,22 @@ class main():
     def read_file_from_stage(self):
         snow_session = self.snowflake_obj.session()
         ## CSV Read
-        # stage_df = snow_session.read\
-        # .options({"field_delimiter" : ";",
-        #           "PARSE_HEADER" : True, 
-        #           "infer_schema" : True ## This will incur schema from stage
-        #           })\
+        stage_df = snow_session.read\
+        .options({"field_delimiter" : ";",
+                  "PARSE_HEADER" : True, 
+                  "infer_schema" : True ## This will incur schema from stage
+                  })\
+        .csv("@snowflake_stage/company_user.csv")
+        # .schema(
+        #     StructType([
+        #         StructField('Login_email',StringType(30)),
+        #         StructField('Identifier',IntegerType()),
+        #         StructField('First_name',StringType(25)),
+        #         StructField('Last_name',StringType(25))
+        #     ])
+        #         )\
         # .csv("@snowflake_stage/company_user.csv")
-        # # .schema(
-        # #     StructType([
-        # #         StructField('Login_email',StringType(30)),
-        # #         StructField('Identifier',IntegerType()),
-        # #         StructField('First_name',StringType(25)),
-        # #         StructField('Last_name',StringType(25))
-        # #     ])
-        # #         )\
-        # # .csv("@snowflake_stage/company_user.csv")
-        # stage_df.show()
+        stage_df.show()
 
         ## JSON Read
         stage_json_df = snow_session.read\
