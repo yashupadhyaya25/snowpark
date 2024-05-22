@@ -20,6 +20,7 @@ class main():
             database=database
         )
     
+    ## Create User Define Function
     def create_udf(self):
         snow_session = self.snowflake_obj.session()
 
@@ -45,6 +46,7 @@ class main():
         sf_df.show()
         snow_session.close()
 
+    ## Create User Define Table Function
     def create_udtfs(self) :
         snow_session = self.snowflake_obj.session()
         sf_df = snow_session.create_dataframe(
@@ -64,7 +66,8 @@ class main():
         sf_df.show()
 
         snow_session.close()
-    
+
+    ## Create User Define Aggregate Function
     def create_udaf(self) :
         snow_session = self.snowflake_obj.session()
         sales_df = snow_session.table('NETFLIX.SALES')
